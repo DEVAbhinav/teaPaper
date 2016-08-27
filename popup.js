@@ -92,7 +92,31 @@ function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
 
+
+function renderArticle(article) {
+  document.getElementById('article').textContent = article.data;
+}
 document.addEventListener('DOMContentLoaded', function() {
+  renderStatus('Making request for the 3 pages!');
+  //url to be defined here by me and passed in getPdfData call --
+  //result is the data from the get request to google drive pdf of the newspaper
+  getPdfData(url, function(result) {
+    if(result){
+      //scrapedData is the array of objects containing desired information 
+      //scraped from the pdf for sample we will use 
+      //only 1 article scrapedData[0].data contains information of the article.
+      scrapeData(result, function(scrapedData) {
+        // to be used when displaying all the articles 
+        //for(var i = 0; i<scrapedData.length;i++)
+        renderArticle(scrapeData[0]);
+
+
+      })
+    }
+
+  })
+
+
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
     renderStatus('Performing Google Image search for ' + url);
