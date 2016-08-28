@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if(result){
       //scrapedData is the array of objects containing desired information 
       //scraped from the pdf for sample we will use 
-      //only 1 article scrapedData[0].data contains information of the article.
+      //only 1 article scrapedData[0].data Contains information of the article.
       renderStatus(result);
       // scrapeData(result, function(scrapedData) {
       //   // to be used when displaying all the articles 
