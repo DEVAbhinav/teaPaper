@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
   renderStatus('Making request for the 3 pages!');
   //url to be defined here by me and passed in getPdfData call --
   //result is the data from the get request to google drive pdf of the newspaper
-  var url = 'https://drive.google.com/open?id=0B_2WPhPcmPk4UWN3eTB5bXhHWTQ';
+  var url = 'http://localhost:8080/';
   getPdfData(url, function(result) {
     if(result){
       //scrapedData is the array of objects containing desired information 

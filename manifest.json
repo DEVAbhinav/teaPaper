@@ -13,6 +13,6 @@
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
-    "https://drive.google.com/open?id=0B_2WPhPcmPk4UWN3eTB5bXhHWTQ"
+    "http://localhost:8080/"
   ]
 }
