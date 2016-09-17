@@ -12,12 +12,12 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-      #status {
+     #status {
         /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
+        
+      }
+      #completeArea {
+        min-height: 650px;
       }
     </style>
 
@@ -30,9 +30,11 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <div id="status"></div>
-    <div id="article"></div>
+    <div id="completeArea">
+    <div id="article-heading"></div>
     <img id="image-result" hidden>
+    <div id="article-body"></div>
+    </div>
   </body>
 </html>
 

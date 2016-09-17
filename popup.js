@@ -89,62 +89,55 @@
 // }
 
 
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
-  document.getElementById('status').style.height = '700px';
-  document.getElementById('status').style.width = '700px';
+function renderArticle(Article) {
+  document.getElementById('article-body').textContent = Article.body;
+  document.getElementById('article-heading').textContent = Article.Heading;
+  //document.getElementById('status').style.height = '700px';
+  document.getElementById('completeArea').style.width = '700px';
 }
 
 
-function renderArticle(article) {
-  document.getElementById('status').textContent = article.data;
-}
+// function renderArticle(article) {
+//   document.getElementById('status').textContent = article.data;
+// }
 
-function getPdfData(url, callback){
+function callApi(url, callback){
   var x = new XMLHttpRequest();
   x.open('GET', url);
   x.responseType = '';
   x.onload = function() {
-    // Parse and process the response from Google Image Search.
-    var response = x.response;
-    if (!response) {
-      alert('No response from URL');
+    //Display the result from node api.
+    var article = x.response;
+    if (!article) {
+      alert('No Article to display.');
       return;
     }
-    callback(response);
-    //var firstResult = response.responseData.results[0];
-    // Take the thumbnai
+    callback(article);
   }
   x.send();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderStatus('Making request for the 3 pages!');
-  //url to be defined here by me and passed in getPdfData call --
-  //result is the data from the get request to google drive pdf of the newspaper
-  var url = 'http://localhost:8080/';
-  getPdfData(url, function(result) {
+  renderArticle('Displaying your first article First Article!');
+  // Making the request to node API 
+  // Response is a object containing 3 keys 
+  //    1. Heading of the article.
+  //    2. Image of the article.
+  //    3. Body of the article.
+  callApi(0, function(result) {
     if(result){
-      //scrapedData is the array of objects containing desired information 
-      //scraped from the pdf for sample we will use 
-      //only 1 article scrapedData[0].data Contains information of the article.
-      renderStatus(result);
-      // scrapeData(result, function(scrapedData) {
-      //   // to be used when displaying all the articles 
-      //   //for(var i = 0; i<scrapedData.length;i++)
-      //   renderArticle(scrapeData[0]);
-      // });
+      renderArticle(result);
     }
   });
 });
 
   // getCurrentTabUrl(function(url) {
   //   // Put the image URL in Google search.
-  //   renderStatus('Performing Google Image search for ' + url);
+  //   renderArticle('Performing Google Image search for ' + url);
 
   //   getImageUrl(url, function(imageUrl, width, height) {
 
-  //     renderStatus('Search term: ' + url + '\n' +
+  //     renderArticle('Search term: ' + url + '\n' +
   //         'Google image search result: ' + imageUrl);
   //     var imageResult = document.getElementById('image-result');
   //     // Explicitly set the width/height to minimize the number of reflows. For
@@ -157,6 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
   //     imageResult.hidden = false;
 
   //   }, function(errorMessage) {
-  //     renderStatus('Cannot display image. ' + errorMessage);
+  //     renderArticle('Cannot display image. ' + errorMessage);
   //   });
   // });
